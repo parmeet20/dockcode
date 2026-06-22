@@ -1,0 +1,76 @@
+# ─── Binaries ─────────────────────────────────────────────────────────────────
+dockercode
+dockercode.exe
+dockercode-*
+*.exe
+*.out
+*.test
+*.bin
+
+# ─── Build artifacts ──────────────────────────────────────────────────────────
+dist/
+build/
+release/
+
+# ─── Go toolchain ─────────────────────────────────────────────────────────────
+# (go.sum is intentionally committed — do NOT ignore it)
+/vendor/
+
+# Test & coverage output
+coverage.out
+coverage.html
+*.coverprofile
+cpu.prof
+mem.prof
+
+# ─── GoReleaser ───────────────────────────────────────────────────────────────
+# Keep .goreleaser.yml — ignore generated archives
+dist/
+
+# ─── User runtime data ────────────────────────────────────────────────────────
+# DockerCode writes all state to ~/.dockercode — nothing here to ignore.
+# Exported session files (created by /session export)
+dockercode-export-*.md
+
+# ─── Editor & IDE ─────────────────────────────────────────────────────────────
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── OS generated ─────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# ─── Environment / secrets ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Temporary files ──────────────────────────────────────────────────────────
+*.tmp
+*.temp
+tmp/
+temp/
