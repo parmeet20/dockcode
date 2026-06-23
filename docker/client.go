@@ -127,6 +127,26 @@ func (c *Client) ListImages(ctx context.Context) ([]Image, error) {
 	}
 	return images, nil
 }
+func (c *Client) CreateNetwork(
+	ctx context.Context,
+	name string,
+	driver string,
+) (string, error) {
+
+	resp, err := c.cli.NetworkCreate(
+		ctx,
+		name,
+		network.CreateOptions{
+			Driver: driver,
+		},
+	)
+
+	if err != nil {
+		return "", err
+	}
+
+	return resp.ID, nil
+}
 func (c *Client) ListVolumes(ctx context.Context) ([]Volume, error) {
 	volList, err := c.cli.VolumeList(ctx, volume.ListOptions{})
 	if err != nil {

@@ -98,6 +98,7 @@ func NewAgent(
 	reg.Register(tools.NewDockerfileBuildTool(reg))
 	reg.Register(tools.NewComposeWriteTool(reg))
 	reg.Register(tools.NewNetworkListTool(reg))
+	reg.Register(tools.NewNetworkCreateTool(reg))
 	reg.Register(tools.NewVolumeListTool(reg))
 	reg.Register(askUserTool)
 
