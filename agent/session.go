@@ -209,6 +209,16 @@ func formatChatMD(log []ChatEntry) string {
 	return sb.String()
 }
 func parseChatMD(content string) []ChatEntry {
+	// Normalize Windows line endings so the parser works on all platforms.
+	content = strings.ReplaceAll(content, "\r\n", "\n")
+
+	// Strip the "# Chat Log\n\n" file header so it doesn't absorb the first
+	// message block when we split on "\n\n---\n\n".
+	const chatHeader = "# Chat Log\n\n"
+	if strings.HasPrefix(content, chatHeader) {
+		content = content[len(chatHeader):]
+	}
+
 	var log []ChatEntry
 	blocks := strings.Split(content, "\n\n---\n\n")
 	for _, block := range blocks {
