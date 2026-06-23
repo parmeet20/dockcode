@@ -99,7 +99,7 @@ func (m *Memory) AppendToSection(section, content string) {
 // BuildSystemPrompt constructs the full system prompt from agent.md sections.
 func (m *Memory) BuildSystemPrompt() string {
 	md := m.session.GetAgentMD()
-	return fmt.Sprintf(`You are DockerCode, an expert AI assistant for managing Docker through natural language.
+	return fmt.Sprintf(`You are DockCode, an expert AI assistant for managing Docker through natural language.
 You have access to Docker tools to inspect, create, stop, and manage containers and images.
 Always call docker_status first. Use ask_user when you need clarification before running commands.
 

@@ -1,4 +1,4 @@
-module github.com/parmeet20/dockercode
+module github.com/parmeet20/dockcode
 
 go 1.26.3
 

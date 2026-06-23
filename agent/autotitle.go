@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/parmeet20/dockercode/concurrency"
-	"github.com/parmeet20/dockercode/llm"
+	"github.com/parmeet20/dockcode/concurrency"
+	"github.com/parmeet20/dockcode/llm"
 )
 
 // GenerateTitle fires a background goroutine via the supervisor that asks the LLM

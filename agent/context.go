@@ -1,7 +1,7 @@
 package agent
 
 import (
-	"github.com/parmeet20/dockercode/llm"
+	"github.com/parmeet20/dockcode/llm"
 )
 
 // BuildContext assembles the full conversation context to send to the LLM.

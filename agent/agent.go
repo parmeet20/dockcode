@@ -9,10 +9,10 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/parmeet20/dockercode/concurrency"
-	"github.com/parmeet20/dockercode/docker"
-	"github.com/parmeet20/dockercode/llm"
-	"github.com/parmeet20/dockercode/tools"
+	"github.com/parmeet20/dockcode/concurrency"
+	"github.com/parmeet20/dockcode/docker"
+	"github.com/parmeet20/dockcode/llm"
+	"github.com/parmeet20/dockcode/tools"
 )
 
 // ─── TUI message types ────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 .PHONY: build run test clean tidy
 
-BINARY=dockercode
+BINARY=dockcode
 MAIN=.
 
 build:

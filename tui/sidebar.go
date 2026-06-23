@@ -9,9 +9,9 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/parmeet20/dockercode/agent"
-	"github.com/parmeet20/dockercode/concurrency"
-	"github.com/parmeet20/dockercode/docker"
+	"github.com/parmeet20/dockcode/agent"
+	"github.com/parmeet20/dockcode/concurrency"
+	"github.com/parmeet20/dockcode/docker"
 )
 
 // SidebarPanel identifies which panel is active.

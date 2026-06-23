@@ -11,17 +11,17 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 
-	"github.com/parmeet20/dockercode/agent"
-	"github.com/parmeet20/dockercode/concurrency"
-	"github.com/parmeet20/dockercode/config"
-	"github.com/parmeet20/dockercode/docker"
-	"github.com/parmeet20/dockercode/llm"
-	"github.com/parmeet20/dockercode/tui"
+	"github.com/parmeet20/dockcode/agent"
+	"github.com/parmeet20/dockcode/concurrency"
+	"github.com/parmeet20/dockcode/config"
+	"github.com/parmeet20/dockcode/docker"
+	"github.com/parmeet20/dockcode/llm"
+	"github.com/parmeet20/dockcode/tui"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "dockercode",
-	Short: "🐳 DockerCode — AI-powered Docker management TUI",
+	Use:   "dockcode",
+	Short: "🐳 DockCode — AI-powered Docker management TUI",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return startApp(cmd.Context())
 	},
@@ -62,7 +62,7 @@ func startApp(ctx context.Context) error {
 
 	// ── Sessions ──────────────────────────────────────────────────────────────
 	home, _ := os.UserHomeDir()
-	sessionsDir := filepath.Join(home, ".dockercode", "sessions")
+	sessionsDir := filepath.Join(home, ".dockcode", "sessions")
 	_ = os.MkdirAll(sessionsDir, 0755)
 
 	sessIdx, err := agent.NewSessionIndex(sessionsDir)

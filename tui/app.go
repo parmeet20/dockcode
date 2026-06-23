@@ -12,11 +12,11 @@ import (
 	"github.com/charmbracelet/bubbles/textarea"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/parmeet20/dockercode/agent"
-	"github.com/parmeet20/dockercode/concurrency"
-	"github.com/parmeet20/dockercode/config"
-	"github.com/parmeet20/dockercode/docker"
-	"github.com/parmeet20/dockercode/llm"
+	"github.com/parmeet20/dockcode/agent"
+	"github.com/parmeet20/dockcode/concurrency"
+	"github.com/parmeet20/dockcode/config"
+	"github.com/parmeet20/dockcode/docker"
+	"github.com/parmeet20/dockcode/llm"
 )
 
 // ─── View modes ───────────────────────────────────────────────────────────────
@@ -233,7 +233,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.session.Stop()
 
 			home, _ := os.UserHomeDir()
-			sessionsDir := filepath.Join(home, ".dockercode", "sessions")
+			sessionsDir := filepath.Join(home, ".dockcode", "sessions")
 			sess, err := agent.NewSession(m.ctx, sessionsDir)
 			if err != nil {
 				m.chat.AddMessage(KindError, fmt.Sprintf("Failed to create new session: %s", err))
@@ -257,7 +257,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.session.Stop()
 
 			home, _ := os.UserHomeDir()
-			sessionsDir := filepath.Join(home, ".dockercode", "sessions")
+			sessionsDir := filepath.Join(home, ".dockcode", "sessions")
 			sessionPath := filepath.Join(sessionsDir, msg.SessionID)
 			sess, err := agent.LoadSession(m.ctx, sessionPath)
 			if err != nil {
@@ -471,7 +471,7 @@ func (m *Model) handleSlashCommand(raw string) (tea.Model, tea.Cmd) {
 		m.session.Stop()
 
 		home, _ := os.UserHomeDir()
-		sessionsDir := filepath.Join(home, ".dockercode", "sessions")
+		sessionsDir := filepath.Join(home, ".dockcode", "sessions")
 		sess, err := agent.NewSession(m.ctx, sessionsDir)
 		if err != nil {
 			m.chat.AddMessage(KindError, fmt.Sprintf("Failed to create new session: %s", err))
@@ -657,7 +657,7 @@ func (m *Model) handleSlashCommand(raw string) (tea.Model, tea.Cmd) {
 			_ = os.RemoveAll(m.session.Dir)
 
 			home, _ := os.UserHomeDir()
-			sessionsDir := filepath.Join(home, ".dockercode", "sessions")
+			sessionsDir := filepath.Join(home, ".dockcode", "sessions")
 			sess, err := agent.NewSession(m.ctx, sessionsDir)
 			if err != nil {
 				m.chat.AddMessage(KindError, fmt.Sprintf("Failed to create new session: %s", err))
@@ -688,13 +688,13 @@ func (m *Model) handleSlashCommand(raw string) (tea.Model, tea.Cmd) {
 		case "export":
 			log := m.session.GetChatLog()
 			var sb strings.Builder
-			sb.WriteString(fmt.Sprintf("# DockerCode Session Export - %s\n", m.session.GetMeta().Title))
+			sb.WriteString(fmt.Sprintf("# DockCode Session Export - %s\n", m.session.GetMeta().Title))
 			sb.WriteString(fmt.Sprintf("Session ID: `%s`  \nDate: %s\n\n", m.session.ID, time.Now().Format(time.RFC822)))
 			for _, e := range log {
 				sb.WriteString(fmt.Sprintf("### %s (%s)\n%s\n\n", strings.ToUpper(e.Role), e.Timestamp.Format("15:04:05"), e.Content))
 				sb.WriteString("---\n\n")
 			}
-			exportFile := fmt.Sprintf("dockercode-export-%s.md", m.session.ID)
+			exportFile := fmt.Sprintf("dockcode-export-%s.md", m.session.ID)
 			err := os.WriteFile(exportFile, []byte(sb.String()), 0644)
 			if err != nil {
 				m.chat.AddMessage(KindError, fmt.Sprintf("Failed to export session: %s", err))
@@ -791,7 +791,7 @@ func (m *Model) shutdownCmd() tea.Cmd {
 
 func (m *Model) View() string {
 	if m.width == 0 {
-		return "Starting DockerCode…"
+		return "Starting DockCode…"
 	}
 
 	switch m.mode {
@@ -913,5 +913,5 @@ func (m *Model) chatHeight() int {
 
 // SessionsBaseDir returns the path to the sessions directory.
 func SessionsBaseDir() string {
-	return filepath.Join("~", ".dockercode", "sessions")
+	return filepath.Join("~", ".dockcode", "sessions")
 }

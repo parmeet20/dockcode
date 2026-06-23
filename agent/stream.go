@@ -3,7 +3,7 @@ package agent
 import (
 	"context"
 
-	"github.com/parmeet20/dockercode/llm"
+	"github.com/parmeet20/dockcode/llm"
 )
 
 // StreamDispatcher reads from the LLM delta channel and dispatches text chunks

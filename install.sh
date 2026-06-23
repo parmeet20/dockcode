@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="parmeet20/dockercode"
-BINARY="dockercode"
+REPO="parmeet20/dockcode"
+BINARY="dockcode"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
 
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -20,7 +20,7 @@ EXT="tar.gz"
 
 URL="https://github.com/${REPO}/releases/download/${VERSION}/dockercode_${VERSION}_${OS}_${ARCH}.${EXT}"
 
-echo "Downloading DockerCode ${VERSION} for ${OS}/${ARCH}..."
+echo "Downloading DockCode ${VERSION} for ${OS}/${ARCH}..."
 TMP=$(mktemp -d)
 curl -sL "$URL" -o "$TMP/archive.$EXT"
 
@@ -33,5 +33,5 @@ fi
 install -m 755 "$TMP/$BINARY" "$INSTALL_DIR/$BINARY"
 rm -rf "$TMP"
 
-echo "✓ DockerCode installed to $INSTALL_DIR/$BINARY"
-echo "  Run: dockercode"
+echo "✓ DockCode installed to $INSTALL_DIR/$BINARY"
+echo "  Run: dockcode"

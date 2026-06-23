@@ -9,9 +9,9 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/parmeet20/dockercode/config"
-	"github.com/parmeet20/dockercode/docker"
-	"github.com/parmeet20/dockercode/llm"
+	"github.com/parmeet20/dockcode/config"
+	"github.com/parmeet20/dockcode/docker"
+	"github.com/parmeet20/dockcode/llm"
 )
 
 type onboardStep int
@@ -237,7 +237,7 @@ func (m OnboardingModel) View() string {
 	case stepDocker:
 		sb.WriteString(StyleDim.Render("Checking Docker daemon..."))
 	case stepDone:
-		sb.WriteString(StyleSuccess.Render(IconSuccess + " All set! Starting DockerCode..."))
+		sb.WriteString(StyleSuccess.Render(IconSuccess + " All set! Starting DockCode..."))
 	}
 
 	if m.errMsg != "" {
@@ -261,7 +261,7 @@ func (m OnboardingModel) View() string {
 
 func (m OnboardingModel) header() string {
 	whale := renderPixelWhale()
-	logo := lipgloss.NewStyle().Bold(true).Foreground(ColorPrimary).Render("D O C K E R C O D E")
+	logo := lipgloss.NewStyle().Bold(true).Foreground(ColorPrimary).Render("D O C K C O D E")
 	sub := StyleDim.Render("AI-powered Docker management in your terminal")
 
 	return whale + "\n" +
@@ -278,7 +278,7 @@ func renderPixelWhale() string {
 	l := lipgloss.NewStyle().Background(lipgloss.Color("#CD853F")).Render("  ") // Light brown
 	g := lipgloss.NewStyle().Background(lipgloss.Color("#FFD700")).Render("  ") // Golden eye
 	b := lipgloss.NewStyle().Background(lipgloss.Color("#00D4FF")).Render("  ") // Blue splash
-	e := "  " // Empty space
+	e := "  "                                                                   // Empty space
 
 	grid := []string{
 		"          b             ",

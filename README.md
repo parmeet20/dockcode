@@ -1,8 +1,8 @@
-# DockerCode
+# DockCode
 
 AI-powered Docker management right inside your terminal.
 
-DockerCode is a premium, modern Terminal User Interface (TUI) that integrates AI agents
+DockCode is a premium, modern Terminal User Interface (TUI) that integrates AI agents
 with your local Docker daemon. Monitor, debug, inspect, and manage containers, images,
 volumes, and networks using natural language — no GUI required.
 
@@ -13,17 +13,17 @@ volumes, and networks using natural language — no GUI required.
 Make sure Go 1.21+ is installed, then run:
 
 ```
-go install github.com/parmeet20/dockercode@latest
+go install github.com/parmeet20/dockcode@latest
 ```
 
-**That's it.** On first launch, DockerCode automatically and permanently adds
+**That's it.** On first launch, DockCode automatically and permanently adds
 `%USERPROFILE%\go\bin` (Windows) or `~/go/bin` (macOS/Linux) to your system
-`PATH` — so typing `dockercode` in any new terminal works from that point forward.
+`PATH` — so typing `dockcode` in any new terminal works from that point forward.
 
 > **Windows users (CMD or PowerShell)**
 > After running `go install`, open a **new** CMD or PowerShell window and type:
 > ```
-> dockercode
+> dockcode
 > ```
 > The first-run PATH setup writes directly to the Windows Registry
 > (`HKEY_CURRENT_USER\Environment`) and broadcasts a system-wide change
@@ -31,7 +31,7 @@ go install github.com/parmeet20/dockercode@latest
 
 > **macOS / Linux users**
 > The first run appends `export PATH="$PATH:~/go/bin"` to your
-> `.zshrc` / `.bashrc` / `.profile`. Open a new terminal tab and type `dockercode`.
+> `.zshrc` / `.bashrc` / `.profile`. Open a new terminal tab and type `dockcode`.
 
 ---
 
@@ -51,7 +51,7 @@ go install github.com/parmeet20/dockercode@latest
 | Command | Description |
 |---|---|
 | `/help` | Show all available commands |
-| `/exit` | Gracefully exit DockerCode |
+| `/exit` | Gracefully exit DockCode |
 | `/clear` | Clear chat and reset session memory |
 | `/newchat` | Start a new chat session |
 | `/sessions` | Open session browser (switch / search past sessions) |
@@ -85,13 +85,13 @@ go install github.com/parmeet20/dockercode@latest
 | `Enter` | Send message / confirm command |
 | `q` | Go back from session browser |
 | `Esc` | Dismiss autocomplete or overlays |
-| `Ctrl+C` | Quit DockerCode |
+| `Ctrl+C` | Quit DockCode |
 
 ---
 
 ## Configuration
 
-Config is stored at `~/.dockercode/config.json`. It is created automatically
+Config is stored at `~/.dockcode/config.json`. It is created automatically
 during the onboarding wizard on first launch.
 
-Sessions are stored under `~/.dockercode/sessions/`.
+Sessions are stored under `~/.dockcode/sessions/`.

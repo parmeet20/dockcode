@@ -7,7 +7,7 @@ import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/parmeet20/dockercode/docker"
+	"github.com/parmeet20/dockcode/docker"
 	"github.com/openai/openai-go"
 )
 

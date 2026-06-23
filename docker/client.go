@@ -21,7 +21,7 @@ type Client struct {
 	cli *client.Client
 }
 
-// Container represents container info tailored for DockerCode TUI and tools.
+// Container represents container info tailored for DockCode TUI and tools.
 type Container struct {
 	ID      string   `json:"id"`
 	Name    string   `json:"name"`
@@ -31,7 +31,7 @@ type Container struct {
 	Created int64    `json:"created"`
 }
 
-// Image represents image info tailored for DockerCode TUI and tools.
+// Image represents image info tailored for DockCode TUI and tools.
 type Image struct {
 	ID         string `json:"id"`
 	Repository string `json:"repository"`
@@ -40,7 +40,7 @@ type Image struct {
 	Created    int64  `json:"created"`
 }
 
-// Volume represents volume info tailored for DockerCode TUI and tools.
+// Volume represents volume info tailored for DockCode TUI and tools.
 type Volume struct {
 	Name       string `json:"name"`
 	Driver     string `json:"driver"`
@@ -48,7 +48,7 @@ type Volume struct {
 	Mountpoint string `json:"mountpoint"`
 }
 
-// Network represents network info tailored for DockerCode TUI and tools.
+// Network represents network info tailored for DockCode TUI and tools.
 type Network struct {
 	ID     string `json:"id"`
 	Name   string `json:"name"`

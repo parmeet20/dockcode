@@ -46,7 +46,7 @@ var (
 // ─── Icons & App Info ─────────────────────────────────────────────────────────
 
 var (
-	AppLogo     = "🐳 DockerCode"
+	AppLogo     = "🐳 DockCode"
 	IconPending = "◦"
 	IconSuccess = "✓"
 	IconError   = "✗"
@@ -61,15 +61,15 @@ var (
 
 func init() {
 	if !HasUnicodeSupport() {
-		AppLogo = "DockerCode"
+		AppLogo = "DockCode"
 		IconPending = "-"
 		IconSuccess = "[OK]"
-		IconError   = "[ERR]"
-		IconUser    = "> You"
-		IconAgent   = "* Docker"
-		IconInfo    = "i Info"
-		IconErrMsg  = "! Error"
-		IconTool    = "# Tool"
+		IconError = "[ERR]"
+		IconUser = "> You"
+		IconAgent = "* Docker"
+		IconInfo = "i Info"
+		IconErrMsg = "! Error"
+		IconTool = "# Tool"
 		SpinnerFrames = []string{"-", "\\", "|", "/"}
 	}
 }

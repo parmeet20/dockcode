@@ -7,7 +7,7 @@ import (
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/parmeet20/dockercode/agent"
+	"github.com/parmeet20/dockcode/agent"
 )
 
 // SessionBrowserMsg is sent when the user selects a session to open.

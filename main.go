@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/parmeet20/dockercode/cmd"
+	"github.com/parmeet20/dockcode/cmd"
 )
 
 func main() {

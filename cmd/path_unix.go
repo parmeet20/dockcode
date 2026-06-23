@@ -36,7 +36,7 @@ func EnsureGoBinInPath() error {
 		shellConfigs = []string{".zshrc", ".bashrc", ".profile"}
 	}
 
-	exportCmd := fmt.Sprintf("\n# Added by DockerCode\nexport PATH=\"$PATH:%s\"\n", goBin)
+	exportCmd := fmt.Sprintf("\n# Added by DockCode\nexport PATH=\"$PATH:%s\"\n", goBin)
 
 	for _, cfg := range shellConfigs {
 		p := filepath.Join(home, cfg)

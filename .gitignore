@@ -1,7 +1,7 @@
 # ─── Binaries ─────────────────────────────────────────────────────────────────
-dockercode
-dockercode.exe
-dockercode-*
+dockcode
+dockcode.exe
+dockcode-*
 *.exe
 *.out
 *.test
@@ -28,9 +28,9 @@ mem.prof
 dist/
 
 # ─── User runtime data ────────────────────────────────────────────────────────
-# DockerCode writes all state to ~/.dockercode — nothing here to ignore.
+# DockCode writes all state to ~/.dockcode — nothing here to ignore.
 # Exported session files (created by /session export)
-dockercode-export-*.md
+dockcode-export-*.md
 
 # ─── Editor & IDE ─────────────────────────────────────────────────────────────
 .vscode/settings.json

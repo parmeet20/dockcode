@@ -6,7 +6,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/parmeet20/dockercode/agent"
+	"github.com/parmeet20/dockcode/agent"
 )
 
 // SessionDetailCloseMsg is sent when the user closes the detail view.

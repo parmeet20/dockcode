@@ -1,6 +1,6 @@
 package config
 
-// AppConfig holds the configuration settings for DockerCode
+// AppConfig holds the configuration settings for DockCode
 type AppConfig struct {
 	APIURL   string `json:"api_url"`
 	APIToken string `json:"api_token"`

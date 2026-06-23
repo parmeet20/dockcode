@@ -15,14 +15,14 @@ type Manager struct {
 	cfg  *AppConfig
 }
 
-// NewManager creates a Manager configured to save/load config from ~/.dockercode/config.json
+// NewManager creates a Manager configured to save/load config from ~/.dockcode/config.json
 func NewManager() (*Manager, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return nil, fmt.Errorf("could not find home directory: %w", err)
 	}
 
-	dir := filepath.Join(home, ".dockercode")
+	dir := filepath.Join(home, ".dockcode")
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return nil, fmt.Errorf("could not create config directory: %w", err)
 	}

@@ -13,7 +13,7 @@ type Command struct {
 // AllCommands is the complete list of available slash commands.
 var AllCommands = []Command{
 	{"/help", "Show all available commands"},
-	{"/exit", "Gracefully exit DockerCode"},
+	{"/exit", "Gracefully exit DockCode"},
 	{"/clear", "Clear chat and reset session memory"},
 	{"/newchat", "Start a new chat session"},
 	{"/settoken", "Set a new API token"},
