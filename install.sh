@@ -51,7 +51,7 @@ if [ -z "$VERSION" ]; then
     exit 1
 fi
 
-ARCHIVE="dockercode_${VERSION}_${OS}_${ARCH}.${EXT}"
+ARCHIVE="dockcode_${OS}_${ARCH}.${EXT}"
 
 URL="https://github.com/${REPO}/releases/download/${VERSION}/${ARCHIVE}"
 
