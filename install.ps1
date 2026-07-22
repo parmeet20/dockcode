@@ -14,38 +14,45 @@ $Version = $Release.tag_name
 
 $Asset = "dockcode_windows_amd64.tar.gz"
 
-$Url = "https://github.com/$Repo/releases/download/$Version/$Asset"
+$DownloadUrl = "https://github.com/$Repo/releases/download/$Version/$Asset"
 
 Write-Host "📦 Downloading $Asset..."
 
-$Temp = Join-Path $env:TEMP "dockcode-install"
+$TempDir = Join-Path $env:TEMP "dockcode-install"
 
-if (Test-Path $Temp) {
-    Remove-Item $Temp -Recurse -Force
+if (Test-Path $TempDir) {
+    Remove-Item $TempDir -Recurse -Force
 }
 
 New-Item `
     -ItemType Directory `
-    -Path $Temp `
+    -Path $TempDir `
     | Out-Null
 
-$Archive = Join-Path $Temp "dockcode.tar.gz"
+
+$Archive = Join-Path $TempDir "dockcode.tar.gz"
+
 
 Invoke-WebRequest `
-    -Uri $Url `
+    -Uri $DownloadUrl `
     -OutFile $Archive
+
 
 Write-Host "📂 Extracting..."
 
-tar -xzf $Archive -C $Temp
+tar -xzf $Archive -C $TempDir
 
-$BinaryPath = Join-Path $Temp $Binary
 
-if (!(Test-Path $BinaryPath)) {
-    throw "❌ $Binary not found inside archive"
+$SourceBinary = Join-Path $TempDir $Binary
+
+
+if (!(Test-Path $SourceBinary)) {
+    throw "❌ $Binary not found inside release archive"
 }
 
+
 Write-Host "🚀 Installing DockCode..."
+
 
 New-Item `
     -ItemType Directory `
@@ -53,19 +60,25 @@ New-Item `
     -Force `
     | Out-Null
 
+
 Copy-Item `
-    $BinaryPath `
-    (Join-Path $InstallDir $Binary) `
+    $SourceBinary `
+    "$InstallDir\$Binary" `
     -Force
 
 
-# Add DockCode permanently to user PATH
+
+# ----------------------------------------
+# Add DockCode permanently to User PATH
+# ----------------------------------------
+
 Write-Host "🔧 Updating PATH..."
 
 $UserPath = [Environment]::GetEnvironmentVariable(
     "Path",
     "User"
 )
+
 
 if ($UserPath -notlike "*$InstallDir*") {
 
@@ -76,27 +89,38 @@ if ($UserPath -notlike "*$InstallDir*") {
         $NewPath = "$UserPath;$InstallDir"
     }
 
+
     [Environment]::SetEnvironmentVariable(
         "Path",
         $NewPath,
         "User"
     )
 
-    Write-Host "✅ Added DockCode to PATH"
+    Write-Host "✅ Added DockCode to permanent PATH"
+
 }
 else {
+
     Write-Host "✅ DockCode already exists in PATH"
+
 }
 
 
-# Update current PowerShell session PATH
-if ($env:Path -notlike "*$InstallDir*") {
-    $env:Path += ";$InstallDir"
-}
+
+# Refresh PATH for current PowerShell session
+
+$env:Path = (
+    [Environment]::GetEnvironmentVariable("Path", "Machine") +
+    ";" +
+    [Environment]::GetEnvironmentVariable("Path", "User")
+)
+
 
 
 # Cleanup
-Remove-Item $Temp -Recurse -Force
+
+Remove-Item $TempDir -Recurse -Force
+
 
 
 Write-Host ""
@@ -104,8 +128,11 @@ Write-Host "================================="
 Write-Host "✅ DockCode installed successfully!"
 Write-Host "================================="
 Write-Host ""
+
 Write-Host "Version : $Version"
 Write-Host "Location: $InstallDir\$Binary"
+
 Write-Host ""
+
 Write-Host "Run:"
 Write-Host "  dockcode"
