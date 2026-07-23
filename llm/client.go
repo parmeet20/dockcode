@@ -43,9 +43,21 @@ type RetryMsg struct {
 	Error   bool
 }
 
+func normalizeBaseURL(rawURL string) string {
+	u := strings.TrimSpace(rawURL)
+	u = strings.TrimRight(u, "/")
+	if u == "" {
+		return "https://api.openai.com/v1"
+	}
+	if strings.Contains(u, "nvidia.com") && !strings.HasSuffix(u, "/v1") {
+		u += "/v1"
+	}
+	return u
+}
+
 func NewClient(baseURL, token, model string) *Client {
 	c := &Client{
-		baseURL: strings.TrimRight(baseURL, "/"),
+		baseURL: normalizeBaseURL(baseURL),
 		token:   token,
 		model:   model,
 		retryCfg: RetryConfig{
@@ -66,7 +78,7 @@ func (c *Client) SetProgram(p *tea.Program) {
 func (c *Client) UpdateConfig(baseURL, token, model string) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	c.baseURL = strings.TrimRight(baseURL, "/")
+	c.baseURL = normalizeBaseURL(baseURL)
 	c.token = token
 	c.model = model
 	c.reinitClient()
@@ -161,7 +173,7 @@ func (c *Client) withRetry(ctx context.Context, fn func() error) error {
 
 	errMsg := lastErr.Error()
 	if strings.Contains(errMsg, "connection refused") || strings.Contains(errMsg, "no such host") || strings.Contains(errMsg, "dial tcp") {
-		msg := fmt.Sprintf("✖ Error  Cannot connect to %s. Is this correct?\n          Run /seturl to change it. Common values:\n          • https://api.openai.com/v1\n          • http://localhost:11434/v1  (Ollama)\n          • https://api.groq.com/openai/v1", base)
+		msg := fmt.Sprintf("✖ Error  Cannot connect to %s. Is this correct?\n          Run /seturl to change it. Common values:\n          • https://api.openai.com/v1\n          • https://integrate.api.nvidia.com/v1 (NVIDIA API)\n          • http://localhost:11434/v1  (Ollama)\n          • https://api.groq.com/openai/v1", base)
 		c.notify(msg, true)
 		return errors.New(msg)
 	}
@@ -230,7 +242,8 @@ func (c *Client) ChatStream(ctx context.Context, messages []Message, tools []ope
 
 			if len(choice.Delta.ToolCalls) > 0 {
 				for _, tc := range choice.Delta.ToolCalls {
-					if tc.ID != "" {
+					isNewToolCall := tc.ID != "" && (activeToolCall == nil || activeToolCall.ID != tc.ID)
+					if isNewToolCall {
 						if activeToolCall != nil {
 							select {
 							case deltaCh <- Delta{Type: "tool_call_end", ToolID: activeToolCall.ID}:
@@ -255,8 +268,11 @@ func (c *Client) ChatStream(ctx context.Context, messages []Message, tools []ope
 								return
 							}
 						}
-					} else {
-						if activeToolCall != nil && tc.Function.Arguments != "" {
+					} else if activeToolCall != nil {
+						if tc.Function.Name != "" && activeToolCall.Name == "" {
+							activeToolCall.Name = tc.Function.Name
+						}
+						if tc.Function.Arguments != "" {
 							activeToolCall.Args += tc.Function.Arguments
 							select {
 							case deltaCh <- Delta{Type: "tool_call_chunk", ToolID: activeToolCall.ID, ToolArgs: tc.Function.Arguments}:
@@ -345,12 +361,15 @@ func mapMessagesToParam(messages []Message) []openai.ChatCompletionMessageParamU
 						},
 					})
 				}
+				param := openai.ChatCompletionAssistantMessageParam{
+					Role:      "assistant",
+					ToolCalls: sdkToolCalls,
+				}
+				if m.Content != "" {
+					param.Content = openai.ChatCompletionAssistantMessageParamContentUnion{OfString: openai.String(m.Content)}
+				}
 				params = append(params, openai.ChatCompletionMessageParamUnion{
-					OfAssistant: &openai.ChatCompletionAssistantMessageParam{
-						Role:      "assistant",
-						Content:   openai.ChatCompletionAssistantMessageParamContentUnion{OfString: openai.String(m.Content)},
-						ToolCalls: sdkToolCalls,
-					},
+					OfAssistant: &param,
 				})
 			} else {
 				params = append(params, openai.AssistantMessage(m.Content))

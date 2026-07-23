@@ -176,7 +176,7 @@ func (m OnboardingModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.statusMsg = StyleSuccess.Render(IconSuccess + " Connected successfully")
 		for i, mod := range m.models {
 			low := strings.ToLower(mod)
-			if strings.Contains(low, "gpt-4o") || strings.Contains(low, "claude") || strings.Contains(low, "llama") {
+			if strings.Contains(low, "gpt-4o") || strings.Contains(low, "claude") || strings.Contains(low, "llama") || strings.Contains(low, "nvidia") || strings.Contains(low, "deepseek") || strings.Contains(low, "mistral") || strings.Contains(low, "qwen") {
 				m.modelIdx = i
 				break
 			}
@@ -308,12 +308,12 @@ func (m OnboardingModel) renderWelcome() string {
 }
 
 func (m OnboardingModel) renderBaseURL() string {
-	hint := StyleDim.Render("Or use http://localhost:11434/v1 for Ollama")
+	hint := StyleDim.Render("E.g. https://api.openai.com/v1, https://integrate.api.nvidia.com/v1, or http://localhost:11434/v1")
 	return StyleBold.Render("Base URL") + "\n" + hint + "\n\n" + m.input.View()
 }
 
 func (m OnboardingModel) renderToken() string {
-	hint := StyleDim.Render("Your OpenAI / Groq / etc. API key")
+	hint := StyleDim.Render("Your OpenAI / NVIDIA / Groq / etc. API key")
 	busy := ""
 	if m.spinning {
 		busy = "\n" + m.spinner.View() + " " + m.statusMsg

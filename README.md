@@ -46,7 +46,7 @@ Powered by a robust Go backend and a beautiful Terminal User Interface (TUI), Do
 ## 🌟 Features
 
 - 🧠 **Conversational DevOps**: Say *"Spin up a Postgres database with a custom password and map it to port 5432"*, and DockCode handles the complex `docker run` flags automatically.
-- 🌐 **Multi-Provider Support**: Works out-of-the-box with **OpenAI, Groq, Ollama, LM Studio, OpenRouter**, and any OpenAI-compatible API.
+- 🌐 **Multi-Provider Support**: Works out-of-the-box with **NVIDIA API / NIM (`https://integrate.api.nvidia.com/v1`), OpenAI, Groq, Ollama, LM Studio, OpenRouter**, and any OpenAI-compatible API. Support for NVIDIA models like `meta/llama-3.1-405b-instruct`, `nvidia/llama-3.1-nemotron-70b-instruct`, `deepseek-ai/deepseek-r1`, `mistralai/mistral-large-2-instruct`, `qwen/qwen2.5-72b-instruct`, etc.
 - 🛡️ **Safe & Smart Execution**: DockCode knows when it lacks context. It will pause and explicitly ask you for missing environment variables, specific image tags, or port mappings before executing.
 - 📊 **Live State Sidebar**: An auto-refreshing panel that keeps track of your running Containers, Images, Volumes, and Networks without leaving the chat.
 - 🎨 **Beautiful TUI**: Built with [BubbleTea](https://github.com/charmbracelet/bubbletea) and Lipgloss for a gorgeous, responsive, and native terminal experience.
