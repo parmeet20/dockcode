@@ -23,17 +23,17 @@ func HasUnicodeSupport() bool {
 }
 
 var (
-	ColorPrimary = lipgloss.AdaptiveColor{Light: "#7A431D", Dark: "#E3A869"}
-	ColorText    = lipgloss.AdaptiveColor{Light: "#1A1A1A", Dark: "#E8E8E8"}
-	ColorDim     = lipgloss.AdaptiveColor{Light: "#666666", Dark: "#A0A0A0"}
-	ColorBg      = lipgloss.AdaptiveColor{Light: "#FFFFFF", Dark: "#0D0D0D"}
-	ColorPanel   = lipgloss.AdaptiveColor{Light: "#F0F0F0", Dark: "#1A1A1A"}
-	ColorInput   = lipgloss.AdaptiveColor{Light: "#E8E8E8", Dark: "#2A2A2A"}
-	ColorSuccess = lipgloss.AdaptiveColor{Light: "#007744", Dark: "#00FF88"}
-	ColorError   = lipgloss.AdaptiveColor{Light: "#CC0000", Dark: "#FF4444"}
-	ColorWarning = lipgloss.AdaptiveColor{Light: "#CC8800", Dark: "#FFD700"}
-	ColorTool    = lipgloss.AdaptiveColor{Light: "#CC5500", Dark: "#FF8C00"}
-	ColorBorder  = lipgloss.AdaptiveColor{Light: "#CCCCCC", Dark: "#333333"}
+	ColorPrimary = lipgloss.AdaptiveColor{Light: "#00AA44", Dark: "#00FF66"}
+	ColorText    = lipgloss.AdaptiveColor{Light: "#0A2912", Dark: "#E0FFE9"}
+	ColorDim     = lipgloss.AdaptiveColor{Light: "#2D663B", Dark: "#009944"}
+	ColorBg      = lipgloss.AdaptiveColor{Light: "#F0FFF4", Dark: "#050B07"}
+	ColorPanel   = lipgloss.AdaptiveColor{Light: "#DCF5E3", Dark: "#0D1C13"}
+	ColorInput   = lipgloss.AdaptiveColor{Light: "#E6F7EB", Dark: "#12241A"}
+	ColorSuccess = lipgloss.AdaptiveColor{Light: "#008833", Dark: "#00FF66"}
+	ColorError   = lipgloss.AdaptiveColor{Light: "#CC0033", Dark: "#FF2A55"}
+	ColorWarning = lipgloss.AdaptiveColor{Light: "#88A800", Dark: "#CCFF00"}
+	ColorTool    = lipgloss.AdaptiveColor{Light: "#008B8B", Dark: "#00FFCC"}
+	ColorBorder  = lipgloss.AdaptiveColor{Light: "#99CCAA", Dark: "#004D25"}
 )
 
 var (
@@ -42,7 +42,7 @@ var (
 	IconSuccess = "✓"
 	IconError   = "✗"
 	IconUser    = "▸ You"
-	IconAgent   = "◈ Docker"
+	IconAgent   = "◈ Matrix"
 	IconInfo    = "◆ Info"
 	IconErrMsg  = "✖ Error"
 	IconTool    = "⚙ Tool"
@@ -57,7 +57,7 @@ func init() {
 		IconSuccess = "[OK]"
 		IconError = "[ERR]"
 		IconUser = "> You"
-		IconAgent = "* Docker"
+		IconAgent = "* Matrix"
 		IconInfo = "i Info"
 		IconErrMsg = "! Error"
 		IconTool = "# Tool"
@@ -82,14 +82,14 @@ var (
 	StyleError = lipgloss.NewStyle().
 			Foreground(ColorError)
 
-	StyleWarning = lipgloss.NewStyle().
-			Foreground(ColorWarning)
+	StyleWarning = lipgloss.NewStyle().Foreground(ColorWarning)
 
 	StyleTool = lipgloss.NewStyle().
 			Foreground(ColorTool)
 
 	StyleBold = lipgloss.NewStyle().
 			Bold(true)
+
 	StyleActiveBorder = lipgloss.NewStyle().
 				Border(lipgloss.RoundedBorder()).
 				BorderForeground(ColorPrimary)
@@ -100,7 +100,7 @@ var (
 
 	StyleActiveTab = lipgloss.NewStyle().
 				Background(ColorPrimary).
-				Foreground(ColorBg).
+				Foreground(lipgloss.AdaptiveColor{Light: "#FFFFFF", Dark: "#050B07"}).
 				Bold(true).
 				Padding(0, 1)
 
@@ -112,6 +112,7 @@ var (
 			Background(ColorPanel).
 			Foreground(ColorText).
 			Padding(0, 1)
+
 	StyleInput = lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(ColorBorder).
@@ -119,11 +120,12 @@ var (
 
 	StyleInputFocused = lipgloss.NewStyle().
 				Border(lipgloss.RoundedBorder()).
-				BorderForeground(ColorDim).
+				BorderForeground(ColorPrimary).
 				Padding(0, 1)
-	StyleUserPrefix  = lipgloss.NewStyle().Foreground(ColorDim).Bold(true)
+
+	StyleUserPrefix  = lipgloss.NewStyle().Foreground(ColorPrimary).Bold(true)
 	StyleAgentPrefix = lipgloss.NewStyle().Foreground(ColorSuccess).Bold(true)
-	StyleInfoPrefix  = lipgloss.NewStyle().Foreground(ColorDim)
+	StyleInfoPrefix  = lipgloss.NewStyle().Foreground(ColorTool)
 	StyleErrPrefix   = lipgloss.NewStyle().Foreground(ColorError).Bold(true)
 	StyleToolPrefix  = lipgloss.NewStyle().Foreground(ColorTool).Bold(true)
 )

@@ -71,7 +71,7 @@ func (m SessionDetailModel) View() string {
 
 	help := StyleDim.Render("O=open session  Q=back  ↑↓=scroll")
 	return lipgloss.JoinVertical(lipgloss.Left,
-		StyleDim.Render("◈ Session Detail"),
+		StylePrimary.Render("◈ Session Detail"),
 		row,
 		help,
 	)

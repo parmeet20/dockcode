@@ -215,7 +215,7 @@ func (m SessionBrowserModel) View() string {
 
 	box := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
-		BorderForeground(ColorDim).
+		BorderForeground(ColorPrimary).
 		Padding(1, 2).
 		Width(m.width - 4).
 		Height(m.height - 4).

@@ -241,7 +241,7 @@ func (m OnboardingModel) View() string {
 
 	box := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
-		BorderForeground(ColorDim).
+		BorderForeground(ColorPrimary).
 		Padding(2, 4).
 		Width(70).
 		Render(sb.String())
@@ -261,11 +261,12 @@ func (m OnboardingModel) header() string {
 
 func renderPixelWhale() string {
 	var sb strings.Builder
-	d := lipgloss.NewStyle().Background(lipgloss.Color("#5C4033")).Render("  ")
-	m := lipgloss.NewStyle().Background(lipgloss.Color("#8B5A2B")).Render("  ")
-	l := lipgloss.NewStyle().Background(lipgloss.Color("#CD853F")).Render("  ")
-	g := lipgloss.NewStyle().Background(lipgloss.Color("#FFD700")).Render("  ")
-	b := lipgloss.NewStyle().Background(lipgloss.Color("#E3A869")).Render("  ")
+	// Matrix Green Mouse Color Palette
+	d := lipgloss.NewStyle().Background(lipgloss.Color("#006622")).Render("  ") // Deep Matrix Green Body
+	m := lipgloss.NewStyle().Background(lipgloss.Color("#00AA44")).Render("  ") // Mid Cyber Green Accent
+	l := lipgloss.NewStyle().Background(lipgloss.Color("#00FF66")).Render("  ") // Neon Matrix Green Tail
+	g := lipgloss.NewStyle().Background(lipgloss.Color("#CCFF00")).Render("  ") // Acid Lime Glowing Eye
+	b := lipgloss.NewStyle().Background(lipgloss.Color("#33FF77")).Render("  ") // Bright Matrix Glow Ear
 	e := "  "
 
 	grid := []string{
@@ -304,7 +305,7 @@ func renderPixelWhale() string {
 
 func (m OnboardingModel) renderWelcome() string {
 	return StyleBase.Render("Welcome! Let's get you set up in a few quick steps.") +
-		"\n\n" + StyleDim.Render("[Press Enter to begin]")
+		"\n\n" + StylePrimary.Render("[Press Enter to begin]")
 }
 
 func (m OnboardingModel) renderBaseURL() string {
@@ -352,9 +353,9 @@ func (m OnboardingModel) renderModelPicker() string {
 		prefix := "  "
 		if i == m.modelIdx {
 			if HasUnicodeSupport() {
-				prefix = StyleDim.Render("▸ ")
+				prefix = StylePrimary.Render("▸ ")
 			} else {
-				prefix = StyleDim.Render("> ")
+				prefix = StylePrimary.Render("> ")
 			}
 		} else {
 		}
@@ -364,7 +365,7 @@ func (m OnboardingModel) renderModelPicker() string {
 		}
 		if i == m.modelIdx {
 			sb.WriteString(prefix)
-			sb.WriteString(StyleBase.Render(label))
+			sb.WriteString(StylePrimary.Render(label))
 			sb.WriteString("\n")
 		} else {
 			sb.WriteString(prefix)

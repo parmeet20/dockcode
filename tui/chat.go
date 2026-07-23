@@ -184,16 +184,16 @@ func (c ChatView) renderThinkingMsg() string {
 
 	prefix := StyleAgentPrefix.Render(IconAgent)
 
-	spin := lipgloss.NewStyle().Foreground(ColorDim).Bold(true).
+	spin := lipgloss.NewStyle().Foreground(ColorPrimary).Bold(true).
 		Render(thinkingSpinner[spinIdx])
-	phrase := lipgloss.NewStyle().Foreground(ColorDim).
+	phrase := lipgloss.NewStyle().Foreground(ColorPrimary).
 		Render(thinkingPhrases[phraseIdx])
 	dotCount := (c.spinFrame/len(thinkingSpinner))%3 + 1
 	dotChar := "·"
 	if !HasUnicodeSupport() {
 		dotChar = "."
 	}
-	dots := lipgloss.NewStyle().Foreground(ColorDim).Render(strings.Repeat(dotChar, dotCount))
+	dots := lipgloss.NewStyle().Foreground(ColorPrimary).Render(strings.Repeat(dotChar, dotCount))
 	barLen := 14
 	barPos := c.spinFrame % barLen
 	var bar strings.Builder
@@ -205,9 +205,9 @@ func (c ChatView) renderThinkingMsg() string {
 			}
 			switch dist {
 			case 0:
-				bar.WriteString(lipgloss.NewStyle().Foreground(ColorDim).Bold(true).Render("▰"))
+				bar.WriteString(lipgloss.NewStyle().Foreground(ColorPrimary).Bold(true).Render("▰"))
 			case 1:
-				bar.WriteString(lipgloss.NewStyle().Foreground(ColorDim).Render("▰"))
+				bar.WriteString(lipgloss.NewStyle().Foreground(ColorSuccess).Render("▰"))
 			case 2:
 				bar.WriteString(lipgloss.NewStyle().Foreground(ColorDim).Render("▱"))
 			default:
@@ -218,7 +218,7 @@ func (c ChatView) renderThinkingMsg() string {
 		bar.WriteString("[")
 		for i := 0; i < barLen; i++ {
 			if i == barPos {
-				bar.WriteString(lipgloss.NewStyle().Foreground(ColorDim).Bold(true).Render("="))
+				bar.WriteString(lipgloss.NewStyle().Foreground(ColorPrimary).Bold(true).Render("="))
 			} else {
 				bar.WriteString(lipgloss.NewStyle().Foreground(ColorBorder).Render("-"))
 			}
@@ -262,19 +262,19 @@ func renderMarkdownText(text string, width int) string {
 		}
 		if strings.HasPrefix(line, "### ") {
 			content := processInline(strings.TrimPrefix(line, "### "))
-			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorDim).
+			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorPrimary).
 				Render("  › "+content))
 			continue
 		}
 		if strings.HasPrefix(line, "## ") {
 			content := processInline(strings.TrimPrefix(line, "## "))
-			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorDim).Underline(true).
+			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorPrimary).Underline(true).
 				Render(" ▸ "+content))
 			continue
 		}
 		if strings.HasPrefix(line, "# ") {
 			content := processInline(strings.TrimPrefix(line, "# "))
-			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorDim).Underline(true).
+			out = append(out, lipgloss.NewStyle().Bold(true).Foreground(ColorPrimary).Underline(true).
 				Render("▌ "+content))
 			continue
 		}

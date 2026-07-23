@@ -34,7 +34,7 @@ func (s *StatusBar) Update(tokenCount int64, dockerAlive, agentBusy bool) {
 	}
 }
 func (s StatusBar) View() string {
-	left := StyleDim.Render(AppLogo) +
+	left := StylePrimary.Render(AppLogo) +
 		StyleDim.Render("  |  ") +
 		StyleBase.Render(IconInfo+" "+s.model)
 	middle := s.tokenBar()

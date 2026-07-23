@@ -99,8 +99,8 @@ func (a AutocompleteState) View(width int) string {
 		name := cmd.Name
 		desc := StyleDim.Render("  " + cmd.Desc)
 		if i == a.Selected {
-			prefix = StyleDim.Render("▸ ")
-			name = StyleBase.Render(cmd.Name)
+			prefix = StylePrimary.Render("▸ ")
+			name = StylePrimary.Render(cmd.Name)
 		} else {
 			name = StyleDim.Render(cmd.Name)
 		}
